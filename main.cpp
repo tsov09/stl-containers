@@ -52,31 +52,38 @@ int main() {
 	int n = 20;
 	std::list<int> li {85, 103, 45, 140, 157, 96, 12, 207, 17, 39, 178 };
 	
+	std::cout << "List homework 75:" << std::endl;
+
 	for_each(li.begin(), li.end(), [](int i) { (i > 100 && i < 200) ? (std::cout << i << " ") : (std::cout << "");});
 	
 	std::cout << std::endl;
 
-	/*remove_item_list(li, n);
-	cout << endl;
+	// counting sort
 
-	vector<int> vi{ 85, 45, 96, 12, 17, 39 };
-	cout << "Vector: { ";
-	for (auto it : vi) {
-		cout << it << " ";
+	std::vector<int> vec{ 1, 2, 8, 4, 2, 7, 8, 9, 10, 1, 10, 2, 3, 4, 7, 8, 3, 4, 5, 4, 5, 6, 7, 6, 9, 10, 3 };
+	std::vector<int> vec_count{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	for (int item: vec) {
+		vec_count[item - 1]++;
 	}
-	cout << "}";
-	cout << endl;
-	remove_item_vector(vi, n);
-	cout << endl;
+	std::cout << "Counting sort: " << std::endl;
+	std::cout << "Vector: ";
 
-	set<int> si { 85, 45, 96, 12, 17, 39 };
-	cout << "Set: { ";
-	for (auto it : si) {
-		cout << it << " ";
+	for (int item : vec) {
+		std::cout << item << " ";
 	}
-	cout << "}";
-	cout << endl;
-	remove_item_set(si, n);*/
+	std::cout << std::endl;
+
+	int next = 0;
+	for (int i = 0; i < vec_count.size(); i++) {
+		for (int g = 0; g < vec_count[i]; g++) {
+			vec[next] = i + 1;
+			next++;
+		}
+	}
+	std::cout << "Sorted vector: ";
+	for (int item : vec) {
+		std::cout << item << " ";
+	}
 
 	return 0;
 }
